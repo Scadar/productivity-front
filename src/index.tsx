@@ -5,7 +5,24 @@ import reportWebVitals from "./reportWebVitals";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 
-const theme = createTheme({});
+declare module '@mui/material/styles' {
+    interface Theme {
+        appZIndex: {
+            leftMenu: number;
+        };
+    }
+    interface ThemeOptions {
+        appZIndex?: {
+            leftMenu?: number;
+        };
+    }
+}
+
+const theme = createTheme({
+    appZIndex: {
+        leftMenu: 199
+    }
+});
 
 ReactDOM.render(
     <React.StrictMode>
