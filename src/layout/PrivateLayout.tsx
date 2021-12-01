@@ -4,7 +4,7 @@ import LeftMenu from "./LeftMenu";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import Navbar from "./Navbar";
 
-const Layout: FC = ({ children }) => {
+const PrivateLayout: FC = ({ children }) => {
     const theme = useTheme();
     const dimensions = useWindowDimensions();
     const [leftMenuOpen, setLeftMenuOpen] = useState(dimensions.width > theme.breakpoints.values.md);
@@ -93,4 +93,4 @@ const Layout: FC = ({ children }) => {
     );
 };
 
-export default Layout;
+export default PrivateLayout;
