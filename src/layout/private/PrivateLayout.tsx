@@ -1,10 +1,11 @@
 import React, { FC, useState } from "react";
 import { alpha, Box, Container, useTheme } from "@mui/material";
 import LeftMenu from "./LeftMenu";
-import useWindowDimensions from "../hooks/useWindowDimensions";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 import Navbar from "./Navbar";
+import { Outlet } from "react-router-dom";
 
-const PrivateLayout: FC = ({ children }) => {
+const PrivateLayout: FC = () => {
     const theme = useTheme();
     const dimensions = useWindowDimensions();
     const [leftMenuOpen, setLeftMenuOpen] = useState(dimensions.width > theme.breakpoints.values.md);
@@ -83,7 +84,7 @@ const PrivateLayout: FC = ({ children }) => {
                             }) }
                         >
                             <Container maxWidth="xl" sx={ { overflowX: "auto" } }>
-                                { children }
+                                <Outlet />
                             </Container>
                         </Box>
                     </Box>

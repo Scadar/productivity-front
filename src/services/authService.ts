@@ -37,11 +37,10 @@ export const authApi = createApi({
                 url: "/user/me",
                 method: "GET"
             }),
-            async onQueryStarted(arg, { dispatch, queryFulfilled, requestId }) {
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
                 const accessToken = getTokenFromLocalStorage(TokenType.ACCESS);
                 if (!accessToken) {
                     dispatch(setGlobalLoading(false));
-                    dispatch(setAuthUser(null));
                     return;
                 }
 
@@ -55,6 +54,12 @@ export const authApi = createApi({
                     dispatch(setGlobalLoading(false));
                 }
             },
+            transformResponse(result: any): IUser{
+                const transformResult = result
+                //@ts-ignore
+                transformResult.roles = result.roles.map(role => role.role);
+                return transformResult as IUser;
+            }
         }),
         fetchRegister: build.mutation<ApiResponse, { email: string, password: string }>({
             query: ({ email, password }) => ({
