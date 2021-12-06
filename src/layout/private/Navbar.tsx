@@ -1,10 +1,11 @@
 import React, { FC } from "react";
-import { Box, IconButton, Link, Menu, MenuItem } from "@mui/material";
+import { Box, IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { flexStyles } from "../../utils/styleUtils";
 import { useAppDispatch } from "../../hooks/redux";
 import { logout } from "../../store/slices/auth";
+import { Link, useLocation } from "react-router-dom";
 
 type NavbarProps = {
     setLeftMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -13,6 +14,7 @@ type NavbarProps = {
 const Navbar: FC<NavbarProps> = ({ setLeftMenuOpen }) => {
 
     const dispatch = useAppDispatch();
+    const location = useLocation();
 
     const toggleLeftMenu = () => {
         setLeftMenuOpen(prevState => !prevState);
@@ -78,11 +80,20 @@ const Navbar: FC<NavbarProps> = ({ setLeftMenuOpen }) => {
                     >
                         <MenuItem>
                             <Link
-                                href="/profile"
-                                underline="none"
-                                color="inherit"
+                                to="/settings/profile"
+                                state={{ backgroundLocation: location }}
+                                onClick={closeProfileMenu}
                             >
                                 Профиль
+                            </Link>
+                        </MenuItem>
+                        <MenuItem>
+                            <Link
+                                to="/settings/advanced"
+                                state={{ backgroundLocation: location }}
+                                onClick={closeProfileMenu}
+                            >
+                                Advanced
                             </Link>
                         </MenuItem>
                         <MenuItem onClick={ () => dispatch(logout()) }>Выход</MenuItem>

@@ -1,6 +1,9 @@
 import React, { FC } from "react";
 
 const ProductivityHome: FC = () => {
+
+    console.log("render")
+
     return (
         <div>
             ProductivityHome
@@ -8,4 +11,4 @@ const ProductivityHome: FC = () => {
     );
 };
 
-export default ProductivityHome;
+export default React.memo(ProductivityHome);

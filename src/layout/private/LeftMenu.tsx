@@ -1,10 +1,12 @@
 import React, { FC } from "react";
-import { Box } from "@mui/material";
+import { Box, Link } from "@mui/material";
 
 const LeftMenu: FC = () => {
     return (
         <Box>
-            qweasdasdasdasd
+            <Link href="/">Main</Link>
+            <br/>
+            <Link href="/today">Today</Link>
         </Box>
     );
 };
